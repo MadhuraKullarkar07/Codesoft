@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #b2ccf6;
+            font-family: Arial, sans-serif;
+        }
+
+        .calculator {
+            width: 300px;
+            background: rgb(229, 191, 152);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        #display {
+            background-color: #dfd2d2;
+            width: 100%;
+            height: 50px;
+            font-size: 20px;
+            margin-bottom: 15px;
+            text-align: right;
+            padding: 5px;
+        }
+
+        .buttons { 
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            background-color: #dfd2d2;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #e9ebe9;
+        }
+
+        .equal {
+            background-color: #4CAF50;
+            color: rgb(4, 222, 91);
+        }
+
+        .clear {
+            background-color: #f0756c;
+            color: rgb(241, 8, 8);
+        }
+    </style>
+     
+</head>
+<body>
+    <div class="calculator">
+    <caption><h2>CALCULATOR</h2></caption>
+    <input type="text" id="display" disabled>
+    <caption><h4>Enter expressions:</h4></caption>
+    <div class="buttons">
+        <button class="clear">C</button>
+        <button>/</button>
+        <button>*</button>
+        <button>-</button>
+
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>+</button>
+
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>1</button>
+
+        <button>2</button>
+        <button>3</button>
+        <button>0</button>
+        <button class="equal">=</button>
+    </div>
+</div>
+<script>
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function () {
+            const value = this.innerText;
+
+            if (value === "C") {
+                display.value = "";
+            } 
+            else if (value === "=") {
+                try {
+                    display.value = eval(display.value);
+                } catch {
+                    display.value = "Error";
+                }
+            } 
+            else {
+                display.value += value;
+            }
+        });
+    });
+</script>
+</body>
+</html>
